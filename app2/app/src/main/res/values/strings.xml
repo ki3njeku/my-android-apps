@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">App2</string>
+    <string name="covert_to_cm">Enter the length in inches</string>
+    <string name="covert_to_inches">Enter the length in cm</string>
+</resources>
