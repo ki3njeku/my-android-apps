@@ -1,0 +1,11 @@
+# Introduction
+The repository documents my journey in learning how to integrate Kotlin in the development of android apps. In the other repository, I document the practice exercises I completed to learn Kotlin as a language especially the object oriented attributes.
+I am following the 60hr course on YouTube https://www.youtube.com/watch?v=blKkRoZPxLc and I am attempting the apps he is making. Most of the patterns are therefore picked up from the way his code is stylised
+
+# Projects
+## The first app(Unit converter)
+The first app is a simple unit converter that converts inches to centimeters and vice versa. In this project I learnt the basics connecting the user interface created in the xml files with the logic that is stored in the Kotlin file. Here I learnt how to use the id in the xml elements to identify them and assign them to objects in the Kotlin. These objects have properties which can be used in the various logical operations. An example of this is the .text attribute of the EditText object type. This can be extracted and stored to a variable which can be used to perform operations. Another thing that I got from this project is using the setOnClickListener function in the button object type which can be used to perform operations and change the attributes of the button or of other objects such as has been used in the toggle button and the convert button. 
+A pattern that I have learnt but not yet completely understood is the way objects are declared as private lateinit variables in the main activity class and initialized later within the onCreate function.
+
+## The second app(Color changer)
+The app is an app that changes the background color of the constraints layout based on the buttons pressed. Here I learnt to use the strings and colors xml files instead of hard-coding the values. Also I learnt to use the setBackgroundColor method and the getColor function to find and set the background color.Also I learnt about the random class and associated method, first Int, although I might need some more practise with this. I also learnt about using the Color class which has predefined colors which do not need the getColor function but also do not have the customization. 
