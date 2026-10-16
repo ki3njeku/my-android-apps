@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Data collection app</string>
+    <string name="intro">Tell us a little about yourself</string>
+    <string name="name_hint">Name</string>
+    <string name="age_hint">Age</string>
+    <string name="gender_question">What is your gender</string>
+    <string name="male_radio_button">Male</string>
+    <string name="female_radio_button">Female</string>
+    <string name="other_radio_button">Other</string>
+    <string name="languages_question">Which of these languages do you know</string>
+    <string name="kotlin_checkbox">Kotlin</string>
+    <string name="java_checkbox">Java</string>
+    <string name="python_checkbox">Python</string>
+    <string name="c_checkbox">C</string>
+    <string name="satisfaction_question">On a scale of 1–5 how satisfied are you with this survey</string>
+    <string name="submit_button_text">Submit</string>
+</resources>
