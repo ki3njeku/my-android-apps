@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">countriesQuiz</string>
+    <string name="header">Country trivia game</string>
+    <string name="question_number">How many questions do you want</string>
+    <string name="start_button_text">Start quiz</string>
+    <string name="questions_hint">Questions</string>
+    <string name="question_prompt">Which country is this</string>
+    <string name="correct_answer">Correct</string>
+    <string name="wrong_answer">Wrong</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+</resources>
