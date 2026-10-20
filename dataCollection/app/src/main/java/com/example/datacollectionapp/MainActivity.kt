@@ -1,10 +1,12 @@
 package com.example.datacollectionapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -36,19 +38,24 @@ class MainActivity : AppCompatActivity() {
         cCheckbox = findViewById(R.id.cCheckbox)
         submitButton = findViewById(R.id.submitButton)
         val userList = mutableListOf<User>()
-        lateinit var gender: String
-        genderRadioButtongroup.setOnCheckedChangeListener { radioGroup, id ->
+        var gender= "Rather not say"
+        genderRadioButtongroup.setOnCheckedChangeListener { group, id ->
             when(id){
                 R.id.radioButtonFemale->gender = "Female"
                 R.id.radioButtonMale-> gender = "Male"
                 R.id.radioButtonOther-> gender = "Other"
             }
         }
+        val intent = Intent(this, DisplayDataActivity::class.java)
         submitButton.setOnClickListener{
-            userList.add(User(nameTextInput.text.toString(), ageTextInput.text.toString().toInt(), gender))
+            userList.add(User(nameTextInput.text.toString(), ageTextInput.text.toString().toIntOrNull() ?: 0, gender))
+            intent.putExtra(Constants.SENDER1,  userList[0].name)
+            intent.putExtra(Constants.SENDER2, userList[0].gender)
+            intent.putExtra(Constants.SENDER3, userList[0].age)
+            startActivity(intent)
         }
 
     }
 }
 
-private data class User(val name: String, val age: Int, val gender: String)
+private data class User(val name: String, val age: Int?, val gender: String)
