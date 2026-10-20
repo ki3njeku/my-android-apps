@@ -22,6 +22,7 @@ class DisplayDataActivity : AppCompatActivity() {
             age = message.getInt(Constants.SENDER3)
         }
         Toast.makeText(this, name ?: "No name", Toast.LENGTH_SHORT).show()
-        userInfo.text =  "Name: $name\nAge: $age\nGender: $gender"
+        val textToDisplay = "Name: $name\nAge: $age\nGender: $gender"
+        userInfo.text =  textToDisplay
     }
 }
