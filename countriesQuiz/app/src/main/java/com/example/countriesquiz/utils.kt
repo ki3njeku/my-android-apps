@@ -6,6 +6,8 @@ class Constants{
         const val KEY1 = "NAIROBI"
         const val KEY2 = "KUALA LUMPUR"
         const val KEY3 = "GUADALAJARA"
+        const val KEY4 = "SINALOA"
+        const val KEY5 = "BRISBANE"
     }
 }
 class Countries{

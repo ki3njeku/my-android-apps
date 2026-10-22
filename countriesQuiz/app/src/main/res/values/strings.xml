@@ -8,5 +8,16 @@
     <string name="correct_answer">Correct</string>
     <string name="wrong_answer">Wrong</string>
     <string name="skip">Skip</string>
+    <string name="choice1">Choice 1</string>
+    <string name="choice2">Choice 2</string>
+    <string name="choice3">Choice 3</string>
+    <string name="choice4">Choice 4</string>
+    <string name="confirm">Confirm</string>
     <string name="next">Next</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="name">Name</string>
+    <string name="trophy">trophy</string>
+    <string name="play_again">Play Again</string>
+    <string name="_0">0 / 0</string>
+    <string name="exit">Exit</string>
 </resources>

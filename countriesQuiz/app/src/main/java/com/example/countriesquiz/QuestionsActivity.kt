@@ -1,15 +1,17 @@
 package com.example.countriesquiz
 
-import android.graphics.Color
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.iterator
 import kotlin.random.Random
 
 val countryNames = listOf(
@@ -59,17 +61,18 @@ val countryNames = listOf(
     "Kosovo", "Yemen", "Mayotte", "South Africa", "Zambia", "Zimbabwe"
 )
 
-class QuestionsActivity : AppCompatActivity() {
-    //val countries = Countries.loadDrawableIds(this)
-    lateinit var flagImage: ImageView
-    lateinit var choice1: RadioButton
-    lateinit var choice2: RadioButton
-    lateinit var choice3: RadioButton
-    lateinit var choice4: RadioButton
-    lateinit var radioGroup: RadioGroup
-    lateinit var result: TextView
-    lateinit var nextButton: Button
 
+class QuestionsActivity : AppCompatActivity(){
+    private lateinit var flagImage: ImageView
+    private lateinit var choice1: RadioButton
+    private lateinit var choice2: RadioButton
+    private lateinit var choice3: RadioButton
+    private lateinit var choice4: RadioButton
+    private lateinit var radioGroup: RadioGroup
+    private lateinit var nextButton: Button
+    private lateinit var progress: ProgressBar
+    private lateinit var scoreView: TextView
+    private var score = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
@@ -84,46 +87,63 @@ class QuestionsActivity : AppCompatActivity() {
         choice3 = findViewById(R.id.choice3)
         choice4 = findViewById(R.id.choice4)
         radioGroup = findViewById(R.id.choicesGroup)
-        result = findViewById(R.id.result)
         nextButton = findViewById(R.id.next)
+        progress = findViewById(R.id.progressBar)
+        scoreView = findViewById(R.id.scoreDisplay)
         nextButton.text = getText(R.string.next)
+        val extras = intent.extras
+        progress.max = extras?.getInt(Constants.KEY1)!! - 1
+        val userName = extras.getString(Constants.KEY3).toString()
+        setUpScreen(drawableIds,this)
         nextButton.setOnClickListener {
-            recreate()
-            result.visibility = View.INVISIBLE
-            radioGroup.clearCheck()
+            if(progress.progress == progress.max){
+                val intent = Intent(this, ResultsActivity::class.java)
+                intent.putExtra(Constants.KEY2, score)
+                intent.putExtra(Constants.KEY4, userName)
+                intent.putExtra(Constants.KEY5, progress.max+1)
+                startActivity(intent)
+                finish()
+            }else {
+                println(progress.progress)
+                progress.progress++
+                radioGroup.setOnCheckedChangeListener(null)
+                radioGroup.clearCheck()
+                setUpScreen(drawableIds, this)
+                for (choice in radioGroup) {
+                    choice.background =
+                        AppCompatResources.getDrawable(this, R.drawable.regular_radio_button_bg)
+                    choice.isEnabled = true
+                }
+                val message = "Current score: ${score.toString()} / ${progress.progress}"
+                scoreView.text = message
+            }
         }
-
-        val randomIndex = Random.nextInt(drawableIds.size)
+    }
+    fun setUpScreen(flagIds: IntArray, thisContext: Context){
+        val randomIndex = Random.nextInt(flagIds.size)
         val correctAnswer = countryNames[randomIndex]
         val answers = populateRadioButtons(randomIndex)
-
         choice1.text = answers[0]
         choice2.text = answers[1]
         choice3.text = answers[2]
         choice4.text = answers[3]
-
         var correctAnswerId = choice1
         for (choice in listOf(choice1, choice2, choice3, choice4)){
             if(choice.text == correctAnswer){
                 correctAnswerId = choice
             }
         }
-        radioGroup.setOnCheckedChangeListener { _, id ->
+        radioGroup.setOnCheckedChangeListener { radioGroup, id ->
+            correctAnswerId.background = AppCompatResources.getDrawable(thisContext, R.drawable.correct_radio_button_bg)
             when(id){
-                correctAnswerId.id->{
-                    result.visibility = View.VISIBLE
-                    result.text = getString(R.string.correct_answer)
-                    result.setTextColor(Color.GREEN)
-                }
-                else -> {
-                    result.visibility = View.VISIBLE
-                    result.text = getString(R.string.wrong_answer)
-                    result.setTextColor(Color.RED)
-                }
+                correctAnswerId.id->score++
+                else->findViewById<RadioButton>(id).background = AppCompatResources.getDrawable(thisContext, R.drawable.wrong_radio_button_bg)
             }
-
+            for(choice in radioGroup){
+                choice.isEnabled = false
+            }
         }
-        flagImage.setImageDrawable(AppCompatResources.getDrawable(this, drawableIds[randomIndex]))
+        flagImage.setImageDrawable(AppCompatResources.getDrawable(thisContext, flagIds[randomIndex]))
     }
 }
 
