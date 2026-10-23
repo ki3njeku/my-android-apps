@@ -1,4 +1,5 @@
 package com.example.countriesquiz
+//I think this one is simple enough to understand
 
 import android.content.Intent
 import android.os.Bundle

@@ -76,11 +76,15 @@ class QuestionsActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
+
+        //Getting the typed array from the flag_array.xml file
         val typedArray = resources.obtainTypedArray(R.array.country_array)
         val drawableIds = IntArray(typedArray.length()) { i ->
             typedArray.getResourceId(i, 0)
         }
-        typedArray.recycle()
+        typedArray.recycle()//For memory savings
+
+        //Initializing the views
         flagImage = findViewById(R.id.flag)
         choice1 = findViewById(R.id.choice1)
         choice2 = findViewById(R.id.choice2)
@@ -92,11 +96,13 @@ class QuestionsActivity : AppCompatActivity(){
         scoreView = findViewById(R.id.scoreDisplay)
         nextButton.text = getText(R.string.next)
         val extras = intent.extras
+
+        //Getting the values from the previous activities
         progress.max = extras?.getInt(Constants.KEY1)!! - 1
         val userName = extras.getString(Constants.KEY3).toString()
         setUpScreen(drawableIds,this)
         nextButton.setOnClickListener {
-            if(progress.progress == progress.max){
+            if(progress.progress == progress.max){//If you get to the end
                 val intent = Intent(this, ResultsActivity::class.java)
                 intent.putExtra(Constants.KEY2, score)
                 intent.putExtra(Constants.KEY4, userName)
@@ -119,10 +125,15 @@ class QuestionsActivity : AppCompatActivity(){
             }
         }
     }
-    fun setUpScreen(flagIds: IntArray, thisContext: Context){
+    fun setUpScreen(flagIds: IntArray, thisContext: Context/*Technically not needed but just a caveat from before*/){
+        //Getting the correct name of the flag
         val randomIndex = Random.nextInt(flagIds.size)
         val correctAnswer = countryNames[randomIndex]
+
+        //Passing the index to the populateRadioButtonsFunction to add in wrong answers
         val answers = populateRadioButtons(randomIndex)
+
+        //Assigning to the text on the radio buttons
         choice1.text = answers[0]
         choice2.text = answers[1]
         choice3.text = answers[2]
@@ -134,12 +145,13 @@ class QuestionsActivity : AppCompatActivity(){
             }
         }
         radioGroup.setOnCheckedChangeListener { radioGroup, id ->
-            correctAnswerId.background = AppCompatResources.getDrawable(thisContext, R.drawable.correct_radio_button_bg)
+            correctAnswerId.background = AppCompatResources.getDrawable(thisContext, R.drawable.correct_radio_button_bg)/*Shows the answer whether the selected answer is correct or wrong or correct*/
             when(id){
                 correctAnswerId.id->score++
                 else->findViewById<RadioButton>(id).background = AppCompatResources.getDrawable(thisContext, R.drawable.wrong_radio_button_bg)
             }
             for(choice in radioGroup){
+                //To prevent changing answers
                 choice.isEnabled = false
             }
         }
@@ -150,12 +162,12 @@ class QuestionsActivity : AppCompatActivity(){
 fun populateRadioButtons(correctIndex: Int): MutableList<String>{
     val correctAnswer = countryNames[correctIndex]
     val countryNamesCopy = countryNames.toMutableList()
-    countryNamesCopy.remove(correctAnswer)
+    countryNamesCopy.remove(correctAnswer)//So that the answer doesn't repeat
     val answers = mutableListOf(correctAnswer)
     repeat(3) {
         val randomCountryIndex = Random.nextInt(countryNamesCopy.size)
         answers.add(countryNamesCopy[randomCountryIndex])
-        countryNamesCopy.removeAt(randomCountryIndex)
+        countryNamesCopy.removeAt(randomCountryIndex)//To prevent duplicates
     }
     answers.shuffle()
     return answers
