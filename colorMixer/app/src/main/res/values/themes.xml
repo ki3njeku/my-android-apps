@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ColorMixer" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">#381147</item>
+        <item name="textFillColor">#FFFFFF</item>
+    </style>
+
+    <style name="Theme.ColorMixer" parent="Base.Theme.ColorMixer" />
+</resources>
