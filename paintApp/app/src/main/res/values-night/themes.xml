@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PaintApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <item name="colorPrimaryContainer">@color/primary_container_color_dark</item>
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorSecondaryContainer">@color/secondary_color</item>
+        <item name="colorOnPrimaryContainer">#FFFFFF</item>
+        <item name="colorTertiary">@color/tertiary_color</item>
+        <item name="colorAccent">@color/text_accent_color</item>
+        <item name="android:shadowColor">#FFFFFF</item>
+    </style>
+</resources>

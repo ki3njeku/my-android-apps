@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">paintApp</string>
+    <string name="colors">Colors</string>
+    <string name="pallet_icon_name">color pallete icon</string>
+    <string name="brush_button">brush button</string>
+    <string name="home_button">home button</string>
+    <string name="options_button">options button</string>
+</resources>

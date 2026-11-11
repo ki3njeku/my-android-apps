@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PaintApp" parent="Theme.Material3.DayNight.NoActionBar">
+
+         <item name="colorPrimaryContainer">#CBC3E3</item>
+        <item name="colorAccent">#121212</item>
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorOnPrimaryContainer">#000000</item>
+        <item name="colorTertiary">#FFFFFF</item>
+        <item name="android:shadowColor">#000000</item>
+    </style>
+        <style name="Theme.PaintApp" parent="Base.Theme.PaintApp" />
+</resources>
