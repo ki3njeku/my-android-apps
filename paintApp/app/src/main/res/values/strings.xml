@@ -5,4 +5,5 @@
     <string name="brush_button">brush button</string>
     <string name="home_button">home button</string>
     <string name="options_button">options button</string>
+    <string name="undo">undo</string>
 </resources>

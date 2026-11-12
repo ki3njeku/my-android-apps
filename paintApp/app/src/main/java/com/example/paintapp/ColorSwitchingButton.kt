@@ -4,13 +4,22 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.AttributeSet
-import android.widget.Button
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContextCompat
 
 class ColorSwitchingButton(context: Context, attrs: AttributeSet): AppCompatButton(context, attrs) {
     var currentColor: Int? = null
     init {
         this.backgroundTintList = ColorStateList.valueOf((currentColor ?: Color.WHITE))
+    }
+    fun activateColor(){
+        this.background = AppCompatResources.getDrawable(context, R.drawable.selected_color)
+        this.scaleX = 1.25f
+        this.scaleY = 1.25f
+    }
+    fun deactivateColor(){
+        this.background = AppCompatResources.getDrawable(context, R.drawable.color_button_background)
+        this.scaleX = 1f
+        this.scaleY = 1f
     }
 }

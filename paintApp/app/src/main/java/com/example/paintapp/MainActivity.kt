@@ -3,8 +3,7 @@ package com.example.paintapp
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var occupied3: ColorSwitchingButton
     private lateinit var occupied4: ColorSwitchingButton
     private lateinit var drawingView: DrawingView
+    private lateinit var undo: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         occupied2 = findViewById(R.id.occupied_2)
         occupied3 = findViewById(R.id.occupied_3)
         occupied4 = findViewById(R.id.occupied_4)
+        undo = findViewById(R.id.undo)
         occupied1.currentColor = Color.RED
         occupied2.currentColor = Color.GREEN
         occupied3.currentColor = Color.BLUE
@@ -39,7 +40,14 @@ class MainActivity : AppCompatActivity() {
             occupiedColor.backgroundTintList = ColorStateList.valueOf(occupiedColor.currentColor!!)
             occupiedColor.setOnClickListener {
                 drawingView.changeBrushColor(occupiedColor.currentColor!!)
+                for(eachColor in occupiedColors){
+                    eachColor.deactivateColor()
+                }
+                occupiedColor.activateColor()
             }
+        }
+        undo.setOnClickListener {
+            drawingView.undo()
         }
     }
 }

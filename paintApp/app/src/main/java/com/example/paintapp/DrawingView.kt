@@ -35,7 +35,6 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawBitmap(canvasBitmap, 0f, 0f, drawPaint)
-        paths.add(drawPath)
         for(path in paths){
             if(!path.isEmpty){
                 drawPaint.strokeWidth = path.brushThickness
@@ -43,11 +42,11 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
                 canvas.drawPath(path, drawPaint)
             }
         }
-        /*if(!drawPath.isEmpty){
+        if(!drawPath.isEmpty){
             drawPaint.strokeWidth = drawPath.brushThickness
             drawPaint.color = drawPath.color
             canvas.drawPath(drawPath, drawPaint)
-        }*/
+        }
 
     }
 
@@ -67,8 +66,8 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
             }
 
             MotionEvent.ACTION_UP->{
-                drawPath = FingerPath(color, brushSize)
                 paths.add(drawPath)
+                drawPath = FingerPath(color, brushSize)
             }
             else -> return false
 
@@ -89,6 +88,12 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
 
     fun changeBrushColor(newColor: Int){
         color = newColor
+    }
+    fun undo(){
+        if(paths.isNotEmpty()) {
+            invalidate()
+            paths.removeAt(paths.size - 1)
+        }
     }
     internal inner class FingerPath(var color: Int, var brushThickness: Float) : Path(){
 

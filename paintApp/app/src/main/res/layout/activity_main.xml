@@ -157,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_menu"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:outlineAmbientShadowColor="?android:attr/shadowColor"
         android:outlineSpotShadowColor="?android:attr/shadowColor"
@@ -168,6 +168,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
         <ImageButton
+            android:id="@+id/undo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/undo_svgrepo_com"
+            android:contentDescription="@string/undo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/brush_button"/>
+        <ImageButton
             android:id="@+id/brush_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -175,7 +185,7 @@
             android:contentDescription="@string/brush_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/undo"
             app:layout_constraintRight_toLeftOf="@id/home_button"/>
         <ImageButton
             android:id="@+id/home_button"
