@@ -20,4 +20,8 @@
     <string name="play_again">Play Again</string>
     <string name="_0">0 / 0</string>
     <string name="exit">Exit</string>
+    <string name="welcome_text">Welcome to the country quiz game</string>
+    <string name="flag_button">flag button</string>
+    <string name="flags">Flags</string>
+    <string name="capitals">Capitals</string>
 </resources>

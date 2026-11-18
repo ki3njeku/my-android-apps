@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primaryLight">#F8FAFC</color>
+    <color name="primaryDark">#0F172A</color>
+    <color name="surfaceLight">#FFFFFF</color>
+    <color name="surfaceDark">#1E293B</color>
+    <color name="accentLight">#EA580C</color>
+    <color name="accentLightText">#FFFFFF</color>
+    <color name="primaryLightText">#0F172A</color>
+    <color name="primaryDarkText">#F8FAFC</color>
+    <color name="surfaceLightText">#0F172A</color>
+    <color name="surfaceDarkText">#FFFFFF</color>
+    <color name="accentDark">#55604C</color>
+    <color name="accentDarkText">#F7F5F0</color>
 </resources>
